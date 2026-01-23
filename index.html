@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CST Department - Pabna Polytechnic Institute</title>
+  <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/xjHjQZSQ/cst-logo.jpg">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="/_sdk/element_sdk.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +21,28 @@
     
     .font-rajdhani {
       font-family: 'Rajdhani', sans-serif;
+    }
+    
+    /* Image Protection Styles */
+    img {
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -webkit-user-drag: none;
+      -khtml-user-drag: none;
+      -moz-user-drag: none;
+      -o-user-drag: none;
+    }
+    
+    /* Disable right-click context menu on images */
+    img::selection {
+      background: transparent;
+    }
+    
+    img::-moz-selection {
+      background: transparent;
     }
     
     .cyber-grid {
@@ -124,6 +147,46 @@
     .gallery-modal-container {
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Watermark Protection Overlay */
+    .protected-image {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .protected-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      z-index: 10;
+      pointer-events: all;
+    }
+    
+    .protected-image::after {
+      content: 'CST PPI';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      font-weight: bold;
+      color: rgba(16, 185, 129, 0.15);
+      pointer-events: none;
+      z-index: 5;
+      white-space: nowrap;
+      user-select: none;
+    }
+    
+    /* Disable screenshot on specific browsers */
+    @media print {
+      img {
+        display: none !important;
+      }
     }
   </style>
   <style>@view-transition { navigation: auto; }</style>
@@ -278,7 +341,7 @@
      </div><!-- Gallery Section: Batch 21-22 -->
      <div class="mb-16">
       <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-center mb-3 text-emerald-400">ক.কৌ.বি এর ঐকান্তিক '১৯</h3>
-      <p class="text-center text-gray-400 mb-8">কম্পিউটার সাইয়েন্স অ্যান্ড টেকনোলজি (১ম শিফট)<br>
+      <p class="text-center text-gray-400 mb-8">কম্পিউটার সাইয়েন্স অ্যান্ড টেকনোলজি (১ম শি���ট)<br>
        ২১-২২<br>
        পাবনা পলিটেকনিক ইনস্টিটিউট, পাবনা</p><!-- Cover Photo - Clickable -->
       <div class="max-w-4xl mx-auto cursor-pointer" onclick="window.openGalleryModal()">
@@ -299,7 +362,7 @@
      </div><!-- Gallery Section 2: Batch 22-23 -->
      <div class="mb-16">
       <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-center mb-3 text-cyan-400">ক.কৌ.বি এর "অ'প্রতিরোধ্য-২০"</h3>
-      <p class="text-center text-gray-400 mb-8">কম্পিউটার কৌশল বিভাগের ২০ তম ব্যাচ (২২-২৩) সেশন<br>
+      <p class="text-center text-gray-400 mb-8">কম্পিউটার কৌশ�� বিভাগের ২০ তম ব্যাচ (২২-২৩) সেশন<br>
        ১ম শিফট<br>
        পাবনা পলিটেকনিক ইনস্টিটিউট, পাবনা</p><!-- Cover Photo - Clickable -->
       <div class="max-w-4xl mx-auto cursor-pointer" onclick="window.openGalleryModal2()">
@@ -791,6 +854,87 @@
    </footer>
   </div>
   <script>
+    // ==================== SECURITY PROTECTION ====================
+    
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      return false;
+    });
+    
+    // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+    document.addEventListener('keydown', function(e) {
+      // F12
+      if (e.key === 'F12') {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl+Shift+I (DevTools)
+      if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl+Shift+J (Console)
+      if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl+U (View Source)
+      if (e.ctrlKey && e.key === 'u') {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl+Shift+C (Inspect Element)
+      if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl+S (Save Page)
+      if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();
+        return false;
+      }
+    });
+    
+    // Disable text selection on images
+    document.addEventListener('selectstart', function(e) {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+      }
+    });
+    
+    // Disable drag and drop on images
+    document.addEventListener('dragstart', function(e) {
+      if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+      }
+    });
+    
+    // Detect DevTools opening (basic detection)
+    (function() {
+      const devtools = { open: false };
+      const element = new Image();
+      
+      Object.defineProperty(element, 'id', {
+        get: function() {
+          devtools.open = true;
+        }
+      });
+      
+      setInterval(function() {
+        devtools.open = false;
+        console.log(element);
+        console.clear();
+      }, 1000);
+    })();
+    
+    // Obfuscate image URLs in memory
+    const imageCache = new WeakMap();
+    
+    // ==================== END SECURITY PROTECTION ====================
+    
     // Default configuration
     const defaultConfig = {
       department_name: 'Computer Science & Technology',
@@ -1054,5 +1198,5 @@
       lastScroll = currentScroll;
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c26e164e712ba56',t:'MTc2OTE2NzAwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c26ed4b03a8ba56',t:'MTc2OTE2NzQ5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
