@@ -1,0 +1,1058 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CST Department - Pabna Polytechnic Institute</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&amp;family=Rajdhani:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    .font-orbitron {
+      font-family: 'Orbitron', sans-serif;
+    }
+    
+    .font-rajdhani {
+      font-family: 'Rajdhani', sans-serif;
+    }
+    
+    .cyber-grid {
+      background-image: 
+        linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    
+    .glow-text {
+      text-shadow: 0 0 20px rgba(0, 255, 136, 0.5), 0 0 40px rgba(0, 255, 136, 0.3);
+    }
+    
+    .glow-box {
+      box-shadow: 0 0 30px rgba(0, 255, 136, 0.2), inset 0 0 30px rgba(0, 255, 136, 0.05);
+    }
+    
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 255, 136, 0.3);
+    }
+    
+    .gallery-item {
+      transition: all 0.5s ease;
+    }
+    
+    .gallery-item:hover {
+      transform: scale(1.05);
+      z-index: 10;
+    }
+    
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+    
+    .scan-line {
+      background: linear-gradient(transparent 50%, rgba(0, 255, 136, 0.03) 50%);
+      background-size: 100% 4px;
+      pointer-events: none;
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .animate-pulse-glow {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+    
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #00ff88, #00d4ff);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .stat-card {
+      background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+      border: 1px solid rgba(0, 255, 136, 0.3);
+    }
+    
+    .section-divider {
+      background: linear-gradient(90deg, transparent, #00ff88, transparent);
+      height: 1px;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .modal-fade-in {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .gallery-modal-container {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-rajdhani">
+  <div id="app-wrapper" class="h-full w-full overflow-auto bg-gray-950 text-gray-100 cyber-grid"><!-- Scan Line Overlay -->
+   <div class="fixed inset-0 scan-line pointer-events-none z-50"></div><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-40 bg-gray-950/90 backdrop-blur-md border-b border-emerald-500/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex items-center justify-between h-16">
+      <div class="flex items-center gap-3">
+       <div class="w-10 h-10 rounded-lg overflow-hidden bg-white flex items-center justify-center glow-box"><img src="https://i.postimg.cc/xjHjQZSQ/cst-logo.jpg" alt="CST Department Logo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='CST Logo';">
+       </div>
+       <div>
+        <p id="nav-dept" class="font-orbitron text-sm font-bold text-emerald-400">CST Department</p>
+        <p id="nav-inst" class="text-xs text-gray-400">Pabna Polytechnic</p>
+       </div>
+      </div>
+      <div class="hidden md:flex items-center gap-8"><a href="#home" class="nav-link text-gray-300 hover:text-emerald-400 transition-colors">Home</a> <a href="#about" class="nav-link text-gray-300 hover:text-emerald-400 transition-colors">About</a> <a href="https://btebresultszone.com/institute-results/26062" target="_blank" rel="noopener noreferrer" class="nav-link text-gray-300 hover:text-emerald-400 transition-colors">Result List</a> <a href="#teachers" class="nav-link text-gray-300 hover:text-emerald-400 transition-colors">Teachers</a> <a href="#gallery" class="nav-link text-gray-300 hover:text-emerald-400 transition-colors">Gallery</a> <a href="#contact" class="nav-link text-gray-300 hover:text-emerald-400 transition-colors">Contact</a>
+      </div><button id="mobile-menu-btn" class="md:hidden p-2 text-emerald-400" aria-label="Toggle mobile menu">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+       </svg></button>
+     </div>
+    </div><!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 border-t border-emerald-500/20">
+     <div class="px-4 py-3 space-y-2"><a href="#home" class="block py-2 text-gray-300 hover:text-emerald-400">Home</a> <a href="#about" class="block py-2 text-gray-300 hover:text-emerald-400">About</a> <a href="https://btebresultszone.com/institute-results/26062" target="_blank" rel="noopener noreferrer" class="block py-2 text-gray-300 hover:text-emerald-400">Result List</a> <a href="#teachers" class="block py-2 text-gray-300 hover:text-emerald-400">Teachers</a> <a href="#gallery" class="block py-2 text-gray-300 hover:text-emerald-400">Gallery</a> <a href="#contact" class="block py-2 text-gray-300 hover:text-emerald-400">Contact</a>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="home" class="relative min-h-screen flex items-center justify-center pt-16">
+    <div class="absolute inset-0 overflow-hidden">
+     <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse-glow"></div>
+     <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse-glow" style="animation-delay: 1s;"></div>
+    </div>
+    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+     <div class="animate-float mb-8">
+      <div class="w-24 h-24 mx-auto rounded-2xl bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center glow-box">
+       <svg class="w-14 h-14 text-gray-950" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+       </svg>
+      </div>
+     </div>
+     <h1 id="hero-dept" class="font-orbitron text-4xl sm:text-5xl md:text-7xl font-black mb-4 bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent glow-text">Computer Science &amp; Technology</h1>
+     <h2 id="hero-inst" class="font-orbitron text-xl sm:text-2xl md:text-3xl font-semibold text-gray-300 mb-6">Pabna Polytechnic Institute, Pabna</h2>
+     <p id="hero-tagline" class="text-lg sm:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">Empowering Future Technologists with Cutting-Edge Skills &amp; Innovation</p>
+     <div class="flex flex-wrap justify-center gap-4"><a href="https://btebresultszone.com/institute-results/26062" target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-lg font-semibold text-gray-950 hover:from-emerald-400 hover:to-cyan-400 transition-all transform hover:scale-105 glow-box"> View Result List </a> <a href="#contact" class="px-8 py-3 border border-emerald-500/50 rounded-lg font-semibold text-emerald-400 hover:bg-emerald-500/10 transition-all"> Contact Us </a>
+     </div><!-- Stats -->
+     <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="stat-card rounded-xl p-4">
+       <p class="font-orbitron text-3xl font-bold text-emerald-400">500+</p>
+       <p class="text-gray-400">Students</p>
+      </div>
+      <div class="stat-card rounded-xl p-4">
+       <p class="font-orbitron text-3xl font-bold text-cyan-400">15+</p>
+       <p class="text-gray-400">Faculty</p>
+      </div>
+      <div class="stat-card rounded-xl p-4">
+       <p class="font-orbitron text-3xl font-bold text-emerald-400">22+</p>
+       <p class="text-gray-400">Years</p>
+      </div>
+      <div class="stat-card rounded-xl p-4">
+       <p class="font-orbitron text-3xl font-bold text-cyan-400">95%</p>
+       <p class="text-gray-400">Placement</p>
+      </div>
+     </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+     <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+     </svg>
+    </div>
+   </section><!-- About Section -->
+   <section id="about" class="py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+     <div class="section-divider mb-16"></div>
+     <div class="text-center mb-16">
+      <p class="font-orbitron text-emerald-400 text-sm tracking-widest mb-2">// DISCOVER</p>
+      <h2 id="about-title" class="font-orbitron text-3xl sm:text-4xl md:text-5xl font-bold">About Our Department</h2>
+     </div>
+     <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+       <p class="text-lg text-gray-300 leading-relaxed">The Department of Computer Science and Technology at Pabna Polytechnic Institute is a premier center for technical education, dedicated to producing skilled professionals in the field of computing and information technology.</p>
+       <p class="text-gray-400 leading-relaxed">Established with a vision to bridge the gap between theoretical knowledge and practical application, our department offers comprehensive diploma programs that prepare students for the challenges of the modern tech industry.</p>
+       <p class="text-gray-400 leading-relaxed">With state-of-the-art laboratories, experienced faculty, and industry partnerships, we ensure our students receive hands-on training in programming, networking, database management, web development, and emerging technologies.</p>
+       <div class="flex flex-wrap gap-3 pt-4"><span class="px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 rounded-full text-sm text-emerald-400">Programming</span> <span class="px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-sm text-cyan-400">Networking</span> <span class="px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 rounded-full text-sm text-emerald-400">Web Dev</span> <span class="px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-sm text-cyan-400">Database</span> <span class="px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 rounded-full text-sm text-emerald-400">AI/ML</span>
+       </div>
+      </div>
+      <div class="relative">
+       <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 rounded-2xl blur-xl"></div>
+       <div class="relative bg-gray-900/80 border border-emerald-500/30 rounded-2xl p-8 glow-box">
+        <div class="grid grid-cols-2 gap-6">
+         <div class="text-center p-4 bg-gray-950/50 rounded-xl">
+          <svg class="w-10 h-10 mx-auto mb-3 text-emerald-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <p class="font-semibold text-gray-200">Modern Labs</p>
+          <p class="text-sm text-gray-500">5 Computer Labs</p>
+         </div>
+         <div class="text-center p-4 bg-gray-950/50 rounded-xl">
+          <svg class="w-10 h-10 mx-auto mb-3 text-emerald-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <p class="font-semibold text-gray-200">Expert Faculty</p>
+          <p class="text-sm text-gray-500">15+ Teachers</p>
+         </div>
+         <div class="text-center p-4 bg-gray-950/50 rounded-xl">
+          <svg class="w-10 h-10 mx-auto mb-3 text-cyan-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <p class="font-semibold text-gray-200">Internships</p>
+          <p class="text-sm text-gray-500">Industry Partners</p>
+         </div>
+         <div class="text-center p-4 bg-gray-950/50 rounded-xl">
+          <svg class="w-10 h-10 mx-auto mb-3 text-cyan-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+          <p class="font-semibold text-gray-200">Curriculum</p>
+          <p class="text-sm text-gray-500">Industry Aligned</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Teachers Section -->
+   <section id="teachers" class="py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+     <div class="section-divider mb-16"></div>
+     <div class="text-center mb-16">
+      <p class="font-orbitron text-emerald-400 text-sm tracking-widest mb-2">// OUR TEAM</p>
+      <h2 class="font-orbitron text-3xl sm:text-4xl md:text-5xl font-bold">CST Department Teachers</h2>
+      <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Meet our dedicated faculty members who are committed to excellence in technical education</p>
+     </div><!-- Cover Photo - Clickable -->
+     <div class="max-w-4xl mx-auto cursor-pointer" onclick="window.openTeachersModal()">
+      <div class="relative rounded-2xl overflow-hidden border-2 border-emerald-500/30 hover:border-emerald-500 transition-all duration-300 group"><img src="https://i.postimg.cc/3rLtYmPX/masud-sir.jpg" alt="CST Department Head" loading="lazy" class="w-full h-auto object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Image unavailable';">
+       <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+       <div class="absolute inset-0 flex items-center justify-center">
+        <div class="text-center transform group-hover:scale-110 transition-transform">
+         <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-500/30 backdrop-blur-sm flex items-center justify-center border-2 border-emerald-400 glow-box">
+          <svg class="w-10 h-10 text-emerald-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+         </div>
+         <p class="font-orbitron text-xl font-bold text-emerald-400 glow-text">View All Teachers</p>
+         <p class="text-sm text-gray-300 mt-2">Click to see 15 faculty members</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Gallery Section -->
+   <section id="gallery" class="py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+     <div class="section-divider mb-16"></div>
+     <div class="text-center mb-16">
+      <p class="font-orbitron text-emerald-400 text-sm tracking-widest mb-2">// MEMORIES</p>
+      <h2 id="gallery-title" class="font-orbitron text-3xl sm:text-4xl md:text-5xl font-bold">Department Gallery</h2>
+     </div><!-- Gallery Section: Batch 21-22 -->
+     <div class="mb-16">
+      <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-center mb-3 text-emerald-400">ক.কৌ.বি এর ঐকান্তিক '১৯</h3>
+      <p class="text-center text-gray-400 mb-8">কম্পিউটার সাইয়েন্স অ্যান্ড টেকনোলজি (১ম শিফট)<br>
+       ২১-২২<br>
+       পাবনা পলিটেকনিক ইনস্টিটিউট, পাবনা</p><!-- Cover Photo - Clickable -->
+      <div class="max-w-4xl mx-auto cursor-pointer" onclick="window.openGalleryModal()">
+       <div class="relative rounded-2xl overflow-hidden border-2 border-emerald-500/30 hover:border-emerald-500 transition-all duration-300 group"><img src="https://i.postimg.cc/tgjv1DrK/-n.jpg" alt="ক.কৌ.বি এর ঐকান্তিক '১৯ Cover Photo" loading="lazy" class="w-full h-auto object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Image unavailable';">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+         <div class="text-center transform group-hover:scale-110 transition-transform">
+          <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-500/30 backdrop-blur-sm flex items-center justify-center border-2 border-emerald-400 glow-box">
+           <svg class="w-10 h-10 text-emerald-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+           </svg>
+          </div>
+          <p class="font-orbitron text-xl font-bold text-emerald-400 glow-text">View Gallery</p>
+          <p class="text-sm text-gray-300 mt-2">Click to see 8 photos</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Gallery Section 2: Batch 22-23 -->
+     <div class="mb-16">
+      <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-center mb-3 text-cyan-400">ক.কৌ.বি এর "অ'প্রতিরোধ্য-২০"</h3>
+      <p class="text-center text-gray-400 mb-8">কম্পিউটার কৌশল বিভাগের ২০ তম ব্যাচ (২২-২৩) সেশন<br>
+       ১ম শিফট<br>
+       পাবনা পলিটেকনিক ইনস্টিটিউট, পাবনা</p><!-- Cover Photo - Clickable -->
+      <div class="max-w-4xl mx-auto cursor-pointer" onclick="window.openGalleryModal2()">
+       <div class="relative rounded-2xl overflow-hidden border-2 border-cyan-500/30 hover:border-cyan-500 transition-all duration-300 group"><img src="https://i.postimg.cc/vTmp4DNg/22-23.jpg" alt="ক.কৌ.বি এর অ'প্রতিরোধ্য-২০ Cover Photo" loading="lazy" class="w-full h-auto object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #06b6d4, #3b82f6)'; this.alt='Image unavailable';">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+         <div class="text-center transform group-hover:scale-110 transition-transform">
+          <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-cyan-500/30 backdrop-blur-sm flex items-center justify-center border-2 border-cyan-400 glow-box">
+           <svg class="w-10 h-10 text-cyan-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+           </svg>
+          </div>
+          <p class="font-orbitron text-xl font-bold text-cyan-400 glow-text">View Gallery</p>
+          <p class="text-sm text-gray-300 mt-2">Click to see 9 photos</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Gallery Section 3: CST Fest 2025 -->
+     <div class="mb-16">
+      <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-center mb-3 text-purple-400">CST Fest- 2025</h3>
+      <p class="text-center text-gray-400 mb-8">Department Annual Festival<br>
+       Computer Science &amp; Technology<br>
+       Pabna Polytechnic Institute, Pabna</p><!-- Cover Photo - Clickable -->
+      <div class="max-w-4xl mx-auto cursor-pointer" onclick="window.openGalleryModal3()">
+       <div class="relative rounded-2xl overflow-hidden border-2 border-purple-500/30 hover:border-purple-500 transition-all duration-300 group"><img src="https://i.postimg.cc/5N3N6kN7/IMG-4517.jpg" alt="CST Fest 2025 Cover Photo" loading="lazy" class="w-full h-auto object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+         <div class="text-center transform group-hover:scale-110 transition-transform">
+          <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-purple-500/30 backdrop-blur-sm flex items-center justify-center border-2 border-purple-400 glow-box">
+           <svg class="w-10 h-10 text-purple-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+           </svg>
+          </div>
+          <p class="font-orbitron text-xl font-bold text-purple-400 glow-text">View Gallery</p>
+          <p class="text-sm text-gray-300 mt-2">Click to see 16 photos</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Gallery Section 4: Orientation CST 25-26 (1st Shift) -->
+     <div class="mb-16">
+      <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-center mb-3 text-orange-400">Orientation CST 25-26</h3>
+      <p class="text-center text-gray-400 mb-8">Freshman Orientation Program<br>
+       Computer Science &amp; Technology<br>
+       Pabna Polytechnic Institute, Pabna</p><!-- Cover Photo - Clickable -->
+      <div class="max-w-4xl mx-auto cursor-pointer" onclick="window.openGalleryModal4()">
+       <div class="relative rounded-2xl overflow-hidden border-2 border-orange-500/30 hover:border-orange-500 transition-all duration-300 group"><img src="https://i.postimg.cc/RCJgSjG5/sobai-aksathe.jpg" alt="Orientation CST 25-26 Cover Photo" loading="lazy" class="w-full h-auto object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+         <div class="text-center transform group-hover:scale-110 transition-transform">
+          <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-orange-500/30 backdrop-blur-sm flex items-center justify-center border-2 border-orange-400 glow-box">
+           <svg class="w-10 h-10 text-orange-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+           </svg>
+          </div>
+          <p class="font-orbitron text-xl font-bold text-orange-400 glow-text">View Gallery</p>
+          <p class="text-sm text-gray-300 mt-2">Click to see 20 photos</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Gallery Section 5: CST Tour 2024 -->
+     <div class="mb-16">
+      <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-center mb-3 text-pink-400">CST Tour 2024</h3>
+      <p class="text-center text-gray-400 mb-8">Department Tour<br>
+       Computer Science &amp; Technology<br>
+       Pabna Polytechnic Institute, Pabna</p><!-- Single Photo with Hover Message -->
+      <div class="max-w-4xl mx-auto">
+       <div class="relative rounded-2xl overflow-hidden border-2 border-pink-500/30 hover:border-pink-500 transition-all duration-300 group"><img src="https://i.postimg.cc/TYMKsY9N/. . . -n.jpg" alt="CST Tour 2024" loading="lazy" class="w-full h-auto object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #ec4899, #f43f5e)'; this.alt='Image unavailable';">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/50 to-transparent opacity-0 group-hover:opacity-90 transition-opacity"></div>
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+         <div class="text-center transform group-hover:scale-110 transition-transform">
+          <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-pink-500/30 backdrop-blur-sm flex items-center justify-center border-2 border-pink-400 glow-box animate-pulse-glow">
+           <svg class="w-10 h-10 text-pink-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+           </svg>
+          </div>
+          <p class="font-orbitron text-2xl font-bold text-pink-400 glow-text">2026 Tour Loading.....</p>
+          <p class="text-sm text-gray-300 mt-2">Stay tuned for more adventures!</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- Gallery Section 6: Junior Batch 24-25 -->
+     <div class="mb-16">
+      <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-center mb-3 text-blue-400">Junior Batch 24-25</h3>
+      <p class="text-center text-gray-400 mb-8">Our Newest Members<br>
+       Computer Science &amp; Technology<br>
+       Pabna Polytechnic Institute, Pabna</p><!-- Junior Batch Photo -->
+      <div class="max-w-4xl mx-auto">
+       <div class="relative rounded-2xl overflow-hidden border-2 border-blue-500/30 hover:border-blue-500 transition-all duration-300 group"><img src="https://i.postimg.cc/L6QQBwRr/junior.jpg" alt="Junior Batch 24-25" loading="lazy" class="w-full h-auto object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #3b82f6, #2563eb)'; this.alt='Image unavailable';">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/50 to-transparent opacity-0 group-hover:opacity-60 transition-opacity"></div>
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+         <div class="text-center transform group-hover:scale-110 transition-transform">
+          <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-blue-500/30 backdrop-blur-sm flex items-center justify-center border-2 border-blue-400 glow-box">
+           <svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+           </svg>
+          </div>
+          <p class="font-orbitron text-xl font-bold text-blue-400 glow-text">Welcome Juniors!</p>
+          <p class="text-sm text-gray-300 mt-2">Future Tech Leaders</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Gallery Modal 1 - Batch 21-22 -->
+   <div id="gallery-modal" class="hidden fixed inset-0 z-50 gallery-modal-container bg-gray-950/95 backdrop-blur-md modal-fade-in">
+    <div class="min-h-screen px-4 py-20">
+     <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+       <div>
+        <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-emerald-400">ক.কৌ.বি এর ঐকান্তিক '১৯</h3>
+        <p class="text-gray-400 mt-2">কম্পিউটার সাইয়েন্স অ্যান্ড টেকনোলজি (১ম শিফট) • ২১-২২</p>
+       </div><button onclick="window.closeGalleryModal()" class="w-12 h-12 shrink-0 rounded-lg bg-gray-800 border border-emerald-500/30 flex items-center justify-center hover:bg-emerald-500/20 transition-colors" aria-label="Close gallery">
+        <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg></button>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"><!-- Gallery images for batch 21-22 -->
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-emerald-500/20"><img src="https://i.postimg.cc/qBL1YkZj/21-222.jpg" alt="Batch 21-22 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-cyan-500/20"><img src="https://i.postimg.cc/63Z8D50w/21-22.jpg" alt="Batch 21-22 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #06b6d4, #3b82f6)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-emerald-500/20"><img src="https://i.postimg.cc/C18RWLNz/22-222.jpg" alt="Batch 21-22 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #14b8a6, #10b981)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-cyan-500/20"><img src="https://i.postimg.cc/HxMrfs2r/221-22.jpg" alt="Batch 21-22 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-emerald-500/20"><img src="https://i.postimg.cc/50ZC0Kgg/yousuf-vaiya.jpg" alt="Batch 21-22 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #dc2626)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-cyan-500/20"><img src="https://i.postimg.cc/YSP4nD50/talha-vaiya.jpg" alt="Batch 21-22 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #3b82f6, #6366f1)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-emerald-500/20"><img src="https://i.postimg.cc/bJXy2XXw/alamdir.jpg" alt="Batch 21-22 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #14b8a6, #22c55e)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-cyan-500/20"><img src="https://i.postimg.cc/Dw8njfnL/apuder.jpg" alt="Batch 21-22 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #ec4899, #f43f5e)'; this.alt='Image unavailable';">
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Gallery Modal 2 - Batch 22-23 -->
+   <div id="gallery-modal-2" class="hidden fixed inset-0 z-50 gallery-modal-container bg-gray-950/95 backdrop-blur-md modal-fade-in">
+    <div class="min-h-screen px-4 py-20">
+     <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+       <div>
+        <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-cyan-400">ক.কৌ.বি এর "অ'প্রতিরোধ্য-২০"</h3>
+        <p class="text-gray-400 mt-2">কম্পিউটার কৌশল বিভাগের ২০ তম ব্যাচ (২২-২৩) সেশন • ১ম শিফট</p>
+       </div><button onclick="window.closeGalleryModal2()" class="w-12 h-12 shrink-0 rounded-lg bg-gray-800 border border-cyan-500/30 flex items-center justify-center hover:bg-cyan-500/20 transition-colors" aria-label="Close gallery">
+        <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg></button>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"><!-- Gallery images for batch 22-23 -->
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-cyan-500/20"><img src="https://i.postimg.cc/vTmp4DNg/22-23.jpg" alt="Batch 22-23 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #06b6d4, #3b82f6)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-blue-500/20"><img src="https://i.postimg.cc/PJF0Yhgx/2223.jpg" alt="Batch 22-23 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #3b82f6, #6366f1)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-cyan-500/20"><img src="https://i.postimg.cc/j2kBPKpn/2223-23.jpg" alt="Batch 22-23 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #14b8a6, #06b6d4)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-blue-500/20"><img src="https://i.postimg.cc/GtS6GrWH/all.jpg" alt="Batch 22-23 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #8b5cf6, #a855f7)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-cyan-500/20"><img src="https://i.postimg.cc/QCnv1s2W/cst.jpg" alt="Batch 22-23 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #06b6d4, #0ea5e9)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-blue-500/20"><img src="https://i.postimg.cc/ZKmLx0PF/. . . -n.jpg" alt="Batch 22-23 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #3b82f6, #2563eb)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-cyan-500/20"><img src="https://i.postimg.cc/ZKmLx0PP/548214708_. 69_. 092_n.jpg" alt="Batch 22-23 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #06b6d4, #0ea5e9)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-blue-500/20"><img src="https://i.postimg.cc/7YG48gBH/1223.jpg" alt="Batch 22-23 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #3b82f6, #2563eb)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-cyan-500/20"><img src="https://i.postimg.cc/RVkBMN8Z/cst2223.jpg" alt="Batch 22-23 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #06b6d4, #14b8a6)'; this.alt='Image unavailable';">
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Teachers Modal -->
+   <div id="teachers-modal" class="hidden fixed inset-0 z-50 gallery-modal-container bg-gray-950/95 backdrop-blur-md modal-fade-in">
+    <div class="min-h-screen px-4 py-20">
+     <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+       <div>
+        <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-emerald-400">CST Department Faculty</h3>
+        <p class="text-gray-400 mt-2">Meet our dedicated teachers • Computer Science &amp; Technology</p>
+       </div><button onclick="window.closeTeachersModal()" class="w-12 h-12 shrink-0 rounded-lg bg-gray-800 border border-emerald-500/30 flex items-center justify-center hover:bg-emerald-500/20 transition-colors" aria-label="Close teachers list">
+        <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg></button>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"><!-- Teacher Card 1 -->
+       <div class="card-hover bg-gray-900/80 border border-emerald-500/20 rounded-2xl p-6 text-center glow-box">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-emerald-400"><img src="https://i.postimg.cc/3rLtYmPX/masud-sir.jpg" alt="Md. Abdullah Al Masud" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Image unavailable';">
+        </div>
+        <h3 class="font-orbitron text-lg font-bold text-emerald-400 mb-1">Md. Abdullah Al Masud</h3>
+        <p class="text-sm text-cyan-400 mb-2">Chief Instructor &amp; Head</p>
+        <p class="text-xs text-gray-500 mb-2">Computer Science &amp; Technology (1st Shift)</p>
+        <p class="text-xs text-gray-600">📱 01913-501178</p>
+       </div><!-- Teacher Card 2 -->
+       <div class="card-hover bg-gray-900/80 border border-cyan-500/20 rounded-2xl p-6 text-center glow-box">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-cyan-400"><img src="https://i.postimg.cc/VsMXHMzG/sahadat-sir.jpg" alt="Md. Shahadat Hossain" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #06b6d4, #3b82f6)'; this.alt='Image unavailable';">
+        </div>
+        <h3 class="font-orbitron text-lg font-bold text-cyan-400 mb-1">Md. Shahadat Hossain</h3>
+        <p class="text-sm text-emerald-400 mb-2">Chief Instructor &amp; Head</p>
+        <p class="text-xs text-gray-500 mb-2">Computer Science &amp; Technology (2nd Shift)</p>
+        <p class="text-xs text-gray-600">📱 01712-570312</p>
+       </div><!-- Teacher Card 3 -->
+       <div class="card-hover bg-gray-900/80 border border-cyan-500/20 rounded-2xl p-6 text-center glow-box">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-cyan-400"><img src="https://i.postimg.cc/3Nn8bnRq/rezaul-sir.jpg" alt="Sheikh Rezaul Islam" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #06b6d4, #3b82f6)'; this.alt='Image unavailable';">
+        </div>
+        <h3 class="font-orbitron text-lg font-bold text-cyan-400 mb-1">Sheikh Rezaul Islam</h3>
+        <p class="text-sm text-emerald-400 mb-2">Instructor</p>
+        <p class="text-xs text-gray-500 mb-2">Computer Science &amp; Technology (2nd Shift)</p>
+        <p class="text-xs text-gray-600">📱 01712-848445</p>
+       </div><!-- Teacher Card 4 -->
+       <div class="card-hover bg-gray-900/80 border border-emerald-500/20 rounded-2xl p-6 text-center glow-box">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-emerald-400"><img src="https://i.postimg.cc/90zKCp10/sobuj-sir.jpg" alt="Md. Mahmudul Islam Khan" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #14b8a6)'; this.alt='Image unavailable';">
+        </div>
+        <h3 class="font-orbitron text-lg font-bold text-emerald-400 mb-1">Md. Mahmudul Islam Khan</h3>
+        <p class="text-sm text-cyan-400 mb-2">Instructor &amp; Safety Officer</p>
+        <p class="text-xs text-gray-500 mb-2">Computer Science &amp; Technology (1st Shift)</p>
+        <p class="text-xs text-gray-600">📱 01712-918171</p>
+       </div><!-- Teacher Card 5 -->
+       <div class="card-hover bg-gray-900/80 border border-cyan-500/20 rounded-2xl p-6 text-center glow-box">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-cyan-400"><img src="https://i.postimg.cc/BQ9kdxHQ/ismail-sir.jpg" alt="Md. Ismail Hossain" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #06b6d4, #10b981)'; this.alt='Image unavailable';">
+        </div>
+        <h3 class="font-orbitron text-lg font-bold text-cyan-400 mb-1">Md. Ismail Hossain</h3>
+        <p class="text-sm text-emerald-400 mb-2">Instructor &amp; IT Incharge</p>
+        <p class="text-xs text-gray-500 mb-2">Computer Science &amp; Technology (1st Shift)</p>
+        <p class="text-xs text-gray-600">📱 01772-560008</p>
+       </div><!-- Teacher Card 6 -->
+       <div class="card-hover bg-gray-900/80 border border-emerald-500/20 rounded-2xl p-6 text-center glow-box">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-emerald-400"><img src="https://i.postimg.cc/150mTRgK/ruman-sir.jpg" alt="Md. Ruman Hossain" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #14b8a6, #06b6d4)'; this.alt='Image unavailable';">
+        </div>
+        <h3 class="font-orbitron text-lg font-bold text-emerald-400 mb-1">Md. Ruman Hossain</h3>
+        <p class="text-sm text-cyan-400 mb-2">Instructor</p>
+        <p class="text-xs text-gray-500 mb-2">Computer Science &amp; Technology (1st Shift)</p>
+        <p class="text-xs text-gray-600">📱 01723-974489</p>
+       </div><!-- Teacher Card 7 -->
+       <div class="card-hover bg-gray-900/80 border border-cyan-500/20 rounded-2xl p-6 text-center glow-box">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-cyan-400"><img src="https://i.postimg.cc/Jzqhy7MG/imran-sir.jpg" alt="Md. Shawkat Imran" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #06b6d4, #10b981)'; this.alt='Image unavailable';">
+        </div>
+        <h3 class="font-orbitron text-lg font-bold text-cyan-400 mb-1">Md. Shawkat Imran</h3>
+        <p class="text-sm text-emerald-400 mb-2">Instructor (STEP)</p>
+        <p class="text-xs text-gray-500 mb-2">Computer Science &amp; Technology (1st Shift)</p>
+        <p class="text-xs text-gray-600">📱 01701-730607</p>
+       </div><!-- Teacher Card 8 -->
+       <div class="card-hover bg-gray-900/80 border border-emerald-500/20 rounded-2xl p-6 text-center glow-box">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-emerald-400"><img src="https://i.postimg.cc/gjSDkbjy/joy-sir.png" alt="Zahurul Haque" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Image unavailable';">
+        </div>
+        <h3 class="font-orbitron text-lg font-bold text-emerald-400 mb-1">Zahurul Haque</h3>
+        <p class="text-sm text-cyan-400 mb-2">Instructor (STEP)</p>
+        <p class="text-xs text-gray-500 mb-2">Computer Science &amp; Technology (2nd Shift)</p>
+        <p class="text-xs text-gray-600">📱 01710-004825</p>
+       </div><!-- Teacher Card 9 -->
+       <div class="card-hover bg-gray-900/80 border border-cyan-500/20 rounded-2xl p-6 text-center glow-box">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-cyan-400"><img src="https://i.postimg.cc/P5mwSkhs/nayeem-sir.jpg" alt="Md. Musfaq Us Salehin" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #06b6d4, #10b981)'; this.alt='Image unavailable';">
+        </div>
+        <h3 class="font-orbitron text-lg font-bold text-cyan-400 mb-1">Md. Musfaq Us Salehin</h3>
+        <p class="text-sm text-emerald-400 mb-2">Junior Instructor</p>
+        <p class="text-xs text-gray-500 mb-2">Computer Science &amp; Technology (1st Shift)</p>
+        <p class="text-xs text-gray-600">📱 01737-372737</p>
+       </div><!-- Teacher Card 10 -->
+       <div class="card-hover bg-gray-900/80 border border-emerald-500/20 rounded-2xl p-6 text-center glow-box">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-emerald-400"><img src="https://i.postimg.cc/KjDjhtcT/ruhul-amin-sir.jpg" alt="Md. Ruhul Amin" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Image unavailable';">
+        </div>
+        <h3 class="font-orbitron text-lg font-bold text-emerald-400 mb-1">Md. Ruhul Amin</h3>
+        <p class="text-sm text-cyan-400 mb-2">Junior Instructor</p>
+        <p class="text-xs text-gray-500 mb-2">Computer Science &amp; Technology (1st Shift)</p>
+        <p class="text-xs text-gray-600">📱 01518-652364</p>
+       </div><!-- Teacher Card 11 -->
+       <div class="card-hover bg-gray-900/80 border border-cyan-500/20 rounded-2xl p-6 text-center glow-box">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-cyan-400"><img src="https://i.postimg.cc/RFv2btYL/amsir.jpg" alt="Md. Alamgir Hossain" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #06b6d4, #3b82f6)'; this.alt='Image unavailable';">
+        </div>
+        <h3 class="font-orbitron text-lg font-bold text-cyan-400 mb-1">Md. Alamgir Hossain</h3>
+        <p class="text-sm text-emerald-400 mb-2">Junior Instructor</p>
+        <p class="text-xs text-gray-500 mb-2">Computer Science &amp; Technology (1st Shift)</p>
+        <p class="text-xs text-gray-600">📱 01511-800787</p>
+       </div><!-- Teacher Card 12 -->
+       <div class="card-hover bg-gray-900/80 border border-emerald-500/20 rounded-2xl p-6 text-center glow-box">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-emerald-400"><img src="https://i.postimg.cc/v8NS5CGK/sgr.jpg" alt="Md. Sagar Hossain" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #14b8a6)'; this.alt='Image unavailable';">
+        </div>
+        <h3 class="font-orbitron text-lg font-bold text-emerald-400 mb-1">Md. Sagar Hossain</h3>
+        <p class="text-sm text-cyan-400 mb-2">Junior Instructor</p>
+        <p class="text-xs text-gray-500 mb-2">Computer Science &amp; Technology (2nd Shift)</p>
+        <p class="text-xs text-gray-600">📱 01745-069147</p>
+       </div><!-- Teacher Card 13 -->
+       <div class="card-hover bg-gray-900/80 border border-cyan-500/20 rounded-2xl p-6 text-center glow-box">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-cyan-400"><img src="https://i.postimg.cc/TwhB6xRw/imr.jpg" alt="Imran Hossain" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #06b6d4, #3b82f6)'; this.alt='Image unavailable';">
+        </div>
+        <h3 class="font-orbitron text-lg font-bold text-cyan-400 mb-1">Imran Hossain</h3>
+        <p class="text-sm text-emerald-400 mb-2">Junior Instructor</p>
+        <p class="text-xs text-gray-500 mb-2">Computer Science &amp; Technology (2nd Shift)</p>
+        <p class="text-xs text-gray-600">📱 01763-063462</p>
+       </div><!-- Teacher Card 14 -->
+       <div class="card-hover bg-gray-900/80 border border-emerald-500/20 rounded-2xl p-6 text-center glow-box">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-emerald-400"><img src="https://i.postimg.cc/FKkj5CMv/laboni-mam.jpg" alt="Labani Akhter" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #14b8a6)'; this.alt='Image unavailable';">
+        </div>
+        <h3 class="font-orbitron text-lg font-bold text-emerald-400 mb-1">Labani Akhter</h3>
+        <p class="text-sm text-cyan-400 mb-2">Junior Instructor</p>
+        <p class="text-xs text-gray-500 mb-2">Computer Science &amp; Technology (2nd Shift)</p>
+        <p class="text-xs text-gray-600">📱 01703-484457</p>
+       </div><!-- Teacher Card 15 -->
+       <div class="card-hover bg-gray-900/80 border border-cyan-500/20 rounded-2xl p-6 text-center glow-box">
+        <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-cyan-400"><img src="https://i.postimg.cc/BbR0y6Hq/suman.jpg" alt="Md. Suman Mia" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #06b6d4, #3b82f6)'; this.alt='Image unavailable';">
+        </div>
+        <h3 class="font-orbitron text-lg font-bold text-cyan-400 mb-1">Md. Suman Mia</h3>
+        <p class="text-sm text-emerald-400 mb-2">Junior Instructor (STEP)</p>
+        <p class="text-xs text-gray-500 mb-2">Computer Science &amp; Technology (2nd Shift)</p>
+        <p class="text-xs text-gray-600">📱 01754-881078</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Gallery Modal 3 - CST Fest 2025 -->
+   <div id="gallery-modal-3" class="hidden fixed inset-0 z-50 gallery-modal-container bg-gray-950/95 backdrop-blur-md modal-fade-in">
+    <div class="min-h-screen px-4 py-20">
+     <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+       <div>
+        <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-purple-400">CST Fest- 2025</h3>
+        <p class="text-gray-400 mt-2">Department Annual Festival • Computer Science &amp; Technology</p>
+       </div><button onclick="window.closeGalleryModal3()" class="w-12 h-12 shrink-0 rounded-lg bg-gray-800 border border-purple-500/30 flex items-center justify-center hover:bg-purple-500/20 transition-colors" aria-label="Close gallery">
+        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg></button>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"><!-- CST Fest gallery images -->
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/5N3N6kN7/IMG-4517.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/02MvRptM/cs.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/Yq5HphV9/ff.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/dtkFP8W7/habib.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/TYz6RpSp/jrk.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/PrgjtPcb/kijaninam.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/MKCSWv4b/kmr.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/qMPTkzYx/miraz.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/zXsrJVMk/mog.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/wTCp67PW/ns.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/ncyJHC5P/nssir.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/t4FH79Q2/nur.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/Mp18Xz2t/nvd.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/6pCNTBxt/s-sir.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/Bn2GtJfS/ss.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-purple-500/20"><img src="https://i.postimg.cc/DzF3XRn9/sus.jpg" alt="CST Fest 2025" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #a855f7, #ec4899)'; this.alt='Image unavailable';">
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Gallery Modal 4 - Orientation CST 25-26 -->
+   <div id="gallery-modal-4" class="hidden fixed inset-0 z-50 gallery-modal-container bg-gray-950/95 backdrop-blur-md modal-fade-in">
+    <div class="min-h-screen px-4 py-20">
+     <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+       <div>
+        <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-orange-400">Orientation CST 25-26</h3>
+        <p class="text-gray-400 mt-2">Freshman Orientation Program • Computer Science &amp; Technology</p>
+       </div><button onclick="window.closeGalleryModal4()" class="w-12 h-12 shrink-0 rounded-lg bg-gray-800 border border-orange-500/30 flex items-center justify-center hover:bg-orange-500/20 transition-colors" aria-label="Close gallery">
+        <svg class="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg></button>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"><!-- Orientation gallery images -->
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/yN6f7xpG/1st-sem-meye.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/sXvwZ8rh/alamgir-sir.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/Ss3VLrST/amra-a-b-group-ke-routine-dissi.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/gJQ4yDzv/IMG-6962.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/ZRCVygSN/imran-sir.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/zB6pwjz4/ismail-sir.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/sXqKPcfr/last-er-dike.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/gjhsgZrd/rokon-club-president.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/pV5sWgC1/ruhul-amin-sir.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/sfGTjtmH/ruman-sir.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/RCJgSjG5/sobai-aksathe.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/Wpq5NQSj/sobuj-sir.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/RVcGfKjK/sreya-alam-2nd-semster.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/FsjGc32c/zihad-quaran.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/TYrQmgZj/zubayer-6-cst.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/NfPKbfZ6/2.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/28X1T8g9/4-sahadat-sir.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/c45vT4PF/all-sir.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/DyYS5yRM/all-with-full.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-orange-500/20"><img src="https://i.postimg.cc/ncwXTcNd/polpain-cst-2ndd.jpg" alt="Orientation 25-26" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #f97316, #ea580c)'; this.alt='Image unavailable';">
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Contact Section -->
+   <section id="contact" class="py-20 px-4 bg-gray-900/50">
+    <div class="max-w-7xl mx-auto">
+     <div class="text-center mb-16">
+      <p class="font-orbitron text-emerald-400 text-sm tracking-widest mb-2">// FEEDBACK</p>
+      <h2 class="font-orbitron text-3xl sm:text-4xl md:text-5xl font-bold">Give Feedback to Developers</h2>
+     </div>
+     <div class="grid md:grid-cols-2 gap-12">
+      <div class="space-y-8">
+       <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0">
+         <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="font-orbitron text-lg font-bold text-emerald-400">Address</h3>
+         <p class="text-gray-400">Pabna Polytechnic Institute<br>
+          Pabna, Bangladesh</p>
+        </div>
+       </div>
+       <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-lg bg-cyan-500/10 flex items-center justify-center shrink-0">
+         <svg class="w-6 h-6 text-cyan-400" fill="currentColor" viewbox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="font-orbitron text-lg font-bold text-cyan-400">Official Facebook Page</h3><a href="https://www.facebook.com/CSTianPPI2003" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-cyan-400 transition-colors underline"> @CSTianPPI2003 </a>
+        </div>
+       </div>
+       <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0">
+         <svg class="w-6 h-6 text-emerald-400" fill="currentColor" viewbox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="font-orbitron text-lg font-bold text-emerald-400">Official Facebook Group</h3><a href="https://www.facebook.com/groups/cstppi" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-emerald-400 transition-colors underline"> Join Our Community </a>
+        </div>
+       </div>
+       <div class="pt-4">
+        <h3 class="font-orbitron text-lg font-bold text-emerald-400 mb-4">Connect With Us</h3>
+        <div class="flex gap-4"><a href="https://www.facebook.com/CSTianPPI2003" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-lg bg-gray-800 border border-cyan-500/30 flex items-center justify-center hover:bg-cyan-500/20 transition-all transform hover:scale-110" aria-label="Visit Facebook Page">
+          <svg class="w-6 h-6 text-cyan-400" fill="currentColor" viewbox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+          </svg></a> <a href="https://www.facebook.com/groups/cstppi" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-lg bg-gray-800 border border-emerald-500/30 flex items-center justify-center hover:bg-emerald-500/20 transition-all transform hover:scale-110" aria-label="Join Facebook Group">
+          <svg class="w-6 h-6 text-emerald-400" fill="currentColor" viewbox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 6.016 4.432 10.984 10.206 11.852V15.18H7.237v-3.154h2.969V9.927c0-3.475 1.693-5 4.581-5 1.383 0 2.115.103 2.461.149v2.753h-1.97c-1.226 0-1.654 1.163-1.654 2.473v1.724h3.593L16.73 15.18h-3.106v8.697C19.481 23.083 24 18.075 24 12c0-6.627-5.373-12-12-12z" />
+          </svg></a>
+        </div>
+       </div>
+      </div>
+      <form id="contact-form" class="bg-gray-950/80 border border-emerald-500/20 rounded-2xl p-8 glow-box">
+       <div class="space-y-6">
+        <div><label for="name" class="block text-sm font-semibold text-gray-300 mb-2">Your Name</label> <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-colors text-gray-200" placeholder="Enter your name" required>
+        </div>
+        <div><label for="email" class="block text-sm font-semibold text-gray-300 mb-2">Email Address</label> <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-colors text-gray-200" placeholder="Enter your email" required>
+        </div>
+        <div><label for="message" class="block text-sm font-semibold text-gray-300 mb-2">Message</label> <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-colors text-gray-200 resize-none" placeholder="Your message..." required></textarea>
+        </div><button type="submit" class="w-full py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-lg font-semibold text-gray-950 hover:from-emerald-400 hover:to-cyan-400 transition-all transform hover:scale-[1.02]"> Send Message </button>
+        <div id="form-message" class="hidden text-center p-3 rounded-lg"></div>
+       </div>
+      </form>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-8 px-4 border-t border-emerald-500/20">
+    <div class="max-w-7xl mx-auto">
+     <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+       <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-400 to-cyan-400 flex items-center justify-center">
+        <svg class="w-5 h-5 text-gray-950" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+       </div><span class="font-orbitron text-sm text-gray-400">CST Department</span>
+      </div>
+      <div class="text-center md:text-left">
+       <p id="footer-text" class="text-sm text-gray-500">© 2024 Computer Science &amp; Technology, Pabna Polytechnic Institute. All rights reserved.</p>
+       <p class="text-xs text-gray-600 mt-1 flex items-center justify-center md:justify-start gap-2"><img src="https://i.postimg.cc/GtRLh9Hn/. .jpg" alt="K.M. Rokonuzzaman" loading="lazy" class="w-6 h-6 rounded-full border border-emerald-500/30" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Developer';"> <span>Developed By <a href="https://rukus-protfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-emerald-400 font-semibold hover:text-emerald-300 transition-colors underline decoration-emerald-500/30 hover:decoration-emerald-400">K.M. Rokonuzzaman, CST 22-23</a></span></p>
+      </div>
+      <div class="flex gap-4 text-sm text-gray-500"><a href="#" class="hover:text-emerald-400 transition-colors">Privacy</a> <a href="#" class="hover:text-emerald-400 transition-colors">Terms</a>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      department_name: 'Computer Science & Technology',
+      institute_name: 'Pabna Polytechnic Institute, Pabna',
+      hero_tagline: 'Empowering Future Technologists with Cutting-Edge Skills & Innovation',
+      about_title: 'About Our Department',
+      gallery_title: 'Department Gallery',
+      footer_text: '© 2024 Computer Science & Technology, Pabna Polytechnic Institute. All rights reserved.',
+      primary_color: '#10b981',
+      secondary_color: '#06b6d4',
+      background_color: '#030712',
+      text_color: '#f3f4f6',
+      accent_color: '#1f2937'
+    };
+
+    // Gallery Modal Functions
+    window.openGalleryModal = function() {
+      const modal = document.getElementById('gallery-modal');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeGalleryModal = function() {
+      const modal = document.getElementById('gallery-modal');
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    };
+
+    window.openGalleryModal2 = function() {
+      const modal = document.getElementById('gallery-modal-2');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeGalleryModal2 = function() {
+      const modal = document.getElementById('gallery-modal-2');
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    };
+
+    window.openGalleryModal3 = function() {
+      const modal = document.getElementById('gallery-modal-3');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeGalleryModal3 = function() {
+      const modal = document.getElementById('gallery-modal-3');
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    };
+
+    window.openGalleryModal4 = function() {
+      const modal = document.getElementById('gallery-modal-4');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeGalleryModal4 = function() {
+      const modal = document.getElementById('gallery-modal-4');
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    };
+
+    // Teachers Modal Functions
+    window.openTeachersModal = function() {
+      const modal = document.getElementById('teachers-modal');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeTeachersModal = function() {
+      const modal = document.getElementById('teachers-modal');
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    };
+
+    // Close modals on backdrop click
+    const modals = [
+      'gallery-modal', 
+      'gallery-modal-2', 
+      'gallery-modal-3', 
+      'gallery-modal-4', 
+      'teachers-modal'
+    ];
+    
+    modals.forEach(modalId => {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === this) {
+            this.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+          }
+        });
+      }
+    });
+
+    // Close modals with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        modals.forEach(modalId => {
+          const modal = document.getElementById(modalId);
+          if (modal && !modal.classList.contains('hidden')) {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+          }
+        });
+      }
+    });
+
+    // Initialize Element SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          // Update hero section
+          const heroDept = document.getElementById('hero-dept');
+          const heroInst = document.getElementById('hero-inst');
+          const heroTagline = document.getElementById('hero-tagline');
+          
+          if (heroDept) heroDept.textContent = config.department_name || defaultConfig.department_name;
+          if (heroInst) heroInst.textContent = config.institute_name || defaultConfig.institute_name;
+          if (heroTagline) heroTagline.textContent = config.hero_tagline || defaultConfig.hero_tagline;
+          
+          // Update nav
+          const navDept = document.getElementById('nav-dept');
+          const navInst = document.getElementById('nav-inst');
+          
+          if (navDept) navDept.textContent = 'CST Department';
+          if (navInst) navInst.textContent = (config.institute_name || defaultConfig.institute_name).split(',')[0];
+          
+          // Update about section
+          const aboutTitle = document.getElementById('about-title');
+          if (aboutTitle) aboutTitle.textContent = config.about_title || defaultConfig.about_title;
+          
+          // Update gallery
+          const galleryTitle = document.getElementById('gallery-title');
+          if (galleryTitle) galleryTitle.textContent = config.gallery_title || defaultConfig.gallery_title;
+          
+          // Update footer
+          const footerText = document.getElementById('footer-text');
+          if (footerText) footerText.textContent = config.footer_text || defaultConfig.footer_text;
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => window.elementSdk.setConfig({ background_color: value })
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (value) => window.elementSdk.setConfig({ accent_color: value })
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => window.elementSdk.setConfig({ text_color: value })
+            },
+            {
+              get: () => config.primary_color || defaultConfig.primary_color,
+              set: (value) => window.elementSdk.setConfig({ primary_color: value })
+            },
+            {
+              get: () => config.secondary_color || defaultConfig.secondary_color,
+              set: (value) => window.elementSdk.setConfig({ secondary_color: value })
+            }
+          ],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['department_name', config.department_name || defaultConfig.department_name],
+          ['institute_name', config.institute_name || defaultConfig.institute_name],
+          ['hero_tagline', config.hero_tagline || defaultConfig.hero_tagline],
+          ['about_title', config.about_title || defaultConfig.about_title],
+          ['gallery_title', config.gallery_title || defaultConfig.gallery_title],
+          ['footer_text', config.footer_text || defaultConfig.footer_text]
+        ])
+      });
+    }
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Close mobile menu on link click
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const target = document.querySelector(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Contact form submission
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const btn = this.querySelector('button[type="submit"]');
+        const messageDiv = document.getElementById('form-message');
+        const originalText = btn.textContent;
+        
+        // Show success message
+        btn.textContent = 'Message Sent! ✓';
+        btn.classList.add('bg-emerald-600');
+        
+        if (messageDiv) {
+          messageDiv.textContent = 'Thank you for your feedback! We appreciate your message.';
+          messageDiv.classList.remove('hidden', 'bg-red-500/20', 'text-red-400');
+          messageDiv.classList.add('bg-emerald-500/20', 'text-emerald-400');
+        }
+        
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.classList.remove('bg-emerald-600');
+          this.reset();
+          
+          if (messageDiv) {
+            messageDiv.classList.add('hidden');
+          }
+        }, 3000);
+      });
+    }
+
+    // Navbar scroll effect
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      const currentScroll = window.pageYOffset;
+      
+      if (nav) {
+        if (currentScroll > 100) {
+          nav.classList.add('shadow-lg', 'shadow-emerald-500/10');
+        } else {
+          nav.classList.remove('shadow-lg', 'shadow-emerald-500/10');
+        }
+      }
+      
+      lastScroll = currentScroll;
+    });
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c26e164e712ba56',t:'MTc2OTE2NzAwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
