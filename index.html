@@ -338,12 +338,32 @@
      <div class="text-center mb-16">
       <p class="font-orbitron text-emerald-400 text-sm tracking-widest mb-2">// MEMORIES</p>
       <h2 id="gallery-title" class="font-orbitron text-3xl sm:text-4xl md:text-5xl font-bold">Department Gallery</h2>
+     </div><!-- Gallery Section: Batch 20-21 -->
+     <div class="mb-16">
+      <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-center mb-3 text-emerald-400">বিধ্বংসী ২০-২১</h3>
+      <p class="text-center text-gray-400 mb-8">পাবনা পলিটেকনিক ইনস্টিটিউট এর কম্পিউটার টেকনোলজি<br>
+       ১৮ তম ব্যাচ সেশন ২০-২১</p><!-- Cover Photo - Clickable -->
+      <div class="max-w-4xl mx-auto cursor-pointer" onclick="window.openGalleryModal2021()">
+       <div class="relative rounded-2xl overflow-hidden border-2 border-emerald-500/30 hover:border-emerald-500 transition-all duration-300 group"><img src="https://i.postimg.cc/m2V90xp8/cst2021.jpg" alt="বিধ্বংসী ২০-২১ Cover Photo" loading="lazy" class="w-full h-auto object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Image unavailable';">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+         <div class="text-center transform group-hover:scale-110 transition-transform">
+          <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-emerald-500/30 backdrop-blur-sm flex items-center justify-center border-2 border-emerald-400 glow-box">
+           <svg class="w-10 h-10 text-emerald-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+           </svg>
+          </div>
+          <p class="font-orbitron text-xl font-bold text-emerald-400 glow-text">View Gallery</p>
+          <p class="text-sm text-gray-300 mt-2">Click to see 7 photos</p>
+         </div>
+        </div>
+       </div>
+      </div>
      </div><!-- Gallery Section: Batch 21-22 -->
      <div class="mb-16">
       <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-center mb-3 text-emerald-400">ক.কৌ.বি এর ঐকান্তিক '১৯</h3>
-      <p class="text-center text-gray-400 mb-8">কম্পিউটার সাইয়েন্স অ্যান্ড টেকনোলজি (১ম শি���ট)<br>
+      <p class="text-center text-gray-400 mb-8">কম্পিউটার সা������়েন্স অ্যান্ড টেকনোলজি (১ম শি���ট)<br>
        ২১-২২<br>
-       পাবনা পলিটেকনিক ইনস্টিটিউট, পাবনা</p><!-- Cover Photo - Clickable -->
+       পাবনা পলিটেকনিক ইনস্টিটিউ���, পাবনা</p><!-- Cover Photo - Clickable -->
       <div class="max-w-4xl mx-auto cursor-pointer" onclick="window.openGalleryModal()">
        <div class="relative rounded-2xl overflow-hidden border-2 border-emerald-500/30 hover:border-emerald-500 transition-all duration-300 group"><img src="https://i.postimg.cc/tgjv1DrK/-n.jpg" alt="ক.কৌ.বি এর ঐকান্তিক '১৯ Cover Photo" loading="lazy" class="w-full h-auto object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Image unavailable';">
         <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
@@ -466,7 +486,37 @@
       </div>
      </div>
     </div>
-   </section><!-- Gallery Modal 1 - Batch 21-22 -->
+   </section><!-- Gallery Modal 2021 - Batch 20-21 -->
+   <div id="gallery-modal-2021" class="hidden fixed inset-0 z-50 gallery-modal-container bg-gray-950/95 backdrop-blur-md modal-fade-in">
+    <div class="min-h-screen px-4 py-20">
+     <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+       <div>
+        <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-emerald-400">বিধ্বংসী ২০-২১</h3>
+        <p class="text-gray-400 mt-2">পাবনা পলিটেকনিক ইনস্টিটিউট এর কম্পিউটার টেকনোলজি • ১৮ তম ব্যাচ সেশন ২০-২১</p>
+       </div><button onclick="window.closeGalleryModal2021()" class="w-12 h-12 shrink-0 rounded-lg bg-gray-800 border border-emerald-500/30 flex items-center justify-center hover:bg-emerald-500/20 transition-colors" aria-label="Close gallery">
+        <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg></button>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"><!-- Gallery images for batch 20-21 -->
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-emerald-500/20"><img src="https://i.postimg.cc/m2V90xp8/cst2021.jpg" alt="Batch 20-21 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-emerald-500/20"><img src="https://i.postimg.cc/sD8jBwMM/18batch.jpg" alt="Batch 20-21 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-emerald-500/20"><img src="https://i.postimg.cc/SN5SXDnC/18cst.jpg" alt="Batch 20-21 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-emerald-500/20"><img src="https://i.postimg.cc/kXZJVf2Q/cst18.jpg" alt="Batch 20-21 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-emerald-500/20"><img src="https://i.postimg.cc/5NG4HnXw/cst18b.jpg" alt="Batch 20-21 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-emerald-500/20"><img src="https://i.postimg.cc/RV8S3XW1/cst18s.jpg" alt="Batch 20-21 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Image unavailable';">
+       </div>
+       <div class="gallery-item relative aspect-square rounded-xl overflow-hidden border border-emerald-500/20"><img src="https://i.postimg.cc/28Jkq217/wecst18.jpg" alt="Batch 20-21 Photo" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Image unavailable';">
+       </div>
+      </div>
+     </div>
+    </div>
+   </div><!-- Gallery Modal 1 - Batch 21-22 -->
    <div id="gallery-modal" class="hidden fixed inset-0 z-50 gallery-modal-container bg-gray-950/95 backdrop-blur-md modal-fade-in">
     <div class="min-h-screen px-4 py-20">
      <div class="max-w-7xl mx-auto">
@@ -505,7 +555,7 @@
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
        <div>
         <h3 class="font-rajdhani text-2xl md:text-3xl font-bold text-cyan-400">ক.কৌ.বি এর "অ'প্রতিরোধ্য-২০"</h3>
-        <p class="text-gray-400 mt-2">কম্পিউটার কৌশল বিভাগের ২০ তম ব্যাচ (২২-২৩) সেশন • ১ম শিফট</p>
+        <p class="text-gray-400 mt-2">কম্পিউটার কৌশল বিভাগের ২০ তম ব্য��চ (২২-২৩) সেশন • ১ম শিফট</p>
        </div><button onclick="window.closeGalleryModal2()" class="w-12 h-12 shrink-0 rounded-lg bg-gray-800 border border-cyan-500/30 flex items-center justify-center hover:bg-cyan-500/20 transition-colors" aria-label="Close gallery">
         <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg></button>
@@ -844,8 +894,8 @@
        </div><span class="font-orbitron text-sm text-gray-400">CST Department</span>
       </div>
       <div class="text-center md:text-left">
-       <p id="footer-text" class="text-sm text-gray-500">© 2026 Computer Science &amp; Technology, Pabna Polytechnic Institute. All rights reserved.</p>
-       <p class="text-xs text-gray-600 mt-1 flex items-center justify-center md:justify-start gap-2"><img src="https://i.postimg.cc/GtRLh9Hn/. .jpg" alt="K.M. Rokonuzzaman" loading="lazy" class="w-6 h-6 rounded-full border border-emerald-500/30" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Developer';"> <span>Developed By <a href="https://rukus-protfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-emerald-400 font-semibold hover:text-emerald-300 transition-colors underline decoration-emerald-500/30 hover:decoration-emerald-400">K.M. Rokonuzzaman, CST 22-23</a></span></p>
+       <p class="text-xs text-gray-600 mb-1 flex items-center justify-center md:justify-start gap-2"><img src="https://i.postimg.cc/GtRLh9Hn/. .jpg" alt="K.M. Rokonuzzaman" loading="lazy" class="w-6 h-6 rounded-full border border-emerald-500/30" onerror="console.error('Image failed to load:', this.src); this.style.background='linear-gradient(135deg, #10b981, #06b6d4)'; this.alt='Developer';"> <span>Developed By <a href="https://rukus-protfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-emerald-400 font-semibold hover:text-emerald-300 transition-colors underline decoration-emerald-500/30 hover:decoration-emerald-400">K.M. Rokonuzzaman, CST 22-23</a></span></p>
+       <p id="footer-text" class="text-sm text-gray-500">© 2024 Computer Science &amp; Technology, Pabna Polytechnic Institute. All rights reserved.</p>
       </div>
       <div class="flex gap-4 text-sm text-gray-500"><a href="#" class="hover:text-emerald-400 transition-colors">Privacy</a> <a href="#" class="hover:text-emerald-400 transition-colors">Terms</a>
       </div>
@@ -951,6 +1001,18 @@
     };
 
     // Gallery Modal Functions
+    window.openGalleryModal2021 = function() {
+      const modal = document.getElementById('gallery-modal-2021');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeGalleryModal2021 = function() {
+      const modal = document.getElementById('gallery-modal-2021');
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    };
+
     window.openGalleryModal = function() {
       const modal = document.getElementById('gallery-modal');
       modal.classList.remove('hidden');
@@ -1014,6 +1076,7 @@
 
     // Close modals on backdrop click
     const modals = [
+      'gallery-modal-2021',
       'gallery-modal', 
       'gallery-modal-2', 
       'gallery-modal-3', 
@@ -1198,5 +1261,5 @@
       lastScroll = currentScroll;
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c26ed4b03a8ba56',t:'MTc2OTE2NzQ5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c3908e2c735ba56',t:'MTc2OTM1NzM2NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
