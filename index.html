@@ -1,75 +1,6 @@
 <!doctype html>
 <html lang="en" class="h-full">
- <head><style>
-body{
-  margin:0;
-  font-family: Arial, sans-serif;
-}
-
-/* ===== Header Notice Bar ===== */
-.header-notice{
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background: #7c2d12;        /* Dark amber background */
-  color: #fff;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  z-index: 9999;
-}
-
-/* Moving Text */
-.notice-track{
-  white-space: nowrap;
-  display: inline-block;
-  padding-left: 100%;
-  animation: scroll-left 20s linear infinite;
-  font-size: 14px;
-}
-
-/* Bold part */
-.notice-track span{
-  font-weight: bold;
-  color: #facc15;
-}
-
-/* Animation */
-@keyframes scroll-left{
-  0%{
-    transform: translateX(0%);
-  }
-  100%{
-    transform: translateX(-100%);
-  }
-}
-
-/* Pause on hover */
-.header-notice:hover .notice-track{
-  animation-play-state: paused;
-}
-
-/* Responsive */
-@media (max-width:768px){
-  .notice-track{
-    font-size:12px;
-    animation-duration: 25s;
-  }
-}
-</style>
-
-</head>
-<body>
-
-<!-- 🔔 Header Notice -->
-<div class="header-notice">
-  <div class="notice-track">
-    <span>জরুরি নোটিশ:</span>
-    CST (22–23) ব্যাচের শিক্ষার্থী মিম খাতুনের একটি বড় অপারেশন প্রয়োজন।
-    পরিবারের পক্ষে পুরো চিকিৎসা ব্যয় বহন করা সম্ভব নয়।
-    তাই সবার আন্তরিক আর্থিক সহযোগিতা কামনা করছি।
-  </div>
-</div>
+ <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CST Department - Pabna Polytechnic Institute</title>
@@ -286,6 +217,76 @@ body{
      </div>
     </div>
    </nav><!-- Hero Section -->
+   <style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+}
+
+/* ===== Header Notice Bar ===== */
+.header-notice{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #7c2d12;        /* Dark amber background */
+  color: #fff;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Moving Text */
+.notice-track{
+  white-space: nowrap;
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll-left 20s linear infinite;
+  font-size: 14px;
+}
+
+/* Bold part */
+.notice-track span{
+  font-weight: bold;
+  color: #facc15;
+}
+
+/* Animation */
+@keyframes scroll-left{
+  0%{
+    transform: translateX(0%);
+  }
+  100%{
+    transform: translateX(-100%);
+  }
+}
+
+/* Pause on hover */
+.header-notice:hover .notice-track{
+  animation-play-state: paused;
+}
+
+/* Responsive */
+@media (max-width:768px){
+  .notice-track{
+    font-size:12px;
+    animation-duration: 25s;
+  }
+}
+</style>
+
+</head>
+<body>
+
+<!-- 🔔 Header Notice -->
+<div class="header-notice">
+  <div class="notice-track">
+    <span>জরুরি নোটিশ:</span>
+    CST (22–23) ব্যাচের শিক্ষার্থী মিম খাতুনের একটি বড় অপারেশন প্রয়োজন।
+    পরিবারের পক্ষে পুরো চিকিৎসা ব্যয় বহন করা সম্ভব নয়।
+    তাই সবার আন্তরিক আর্থিক সহযোগিতা কামনা করছি।
+  </div>
+</div>
    <section id="home" class="relative min-h-screen flex items-center justify-center pt-16">
     <div class="absolute inset-0 overflow-hidden">
      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse-glow"></div>
